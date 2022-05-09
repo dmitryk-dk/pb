@@ -17,7 +17,7 @@ import (
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
 
-	"github.com/cheggaaa/pb/v3/termutil"
+	"github.com/dmitryk-dk/pb/v3/termutil"
 )
 
 // Version of ProgressBar library
@@ -406,6 +406,13 @@ func (pb *ProgressBar) IsStarted() bool {
 	pb.mu.RLock()
 	defer pb.mu.RUnlock()
 	return pb.finish != nil
+}
+
+// IsFinished indicates progress bar is finished
+func (pb *ProgressBar) IsFinished() bool {
+	pb.mu.RLock()
+	defer pb.mu.RUnlock()
+	return pb.finished
 }
 
 // SetTemplateString sets ProgressBar tempate string and parse it
